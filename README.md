@@ -34,7 +34,9 @@ The binary takes as input different mandatory parameters:
 ....
 
 # Acknowledgements
-Standing on the shoulders of giants:
+> "Standing on the shoulders of giants"
+
+Our software is built on top of 
 <p align="center">
   <img width="30%" height="30%" src="https://gwillem.gitlab.io/assets/img/hashcat.png">
 </p>
