@@ -1,4 +1,4 @@
-# Adaptive, Dynamic Mangling rules (**ADaMs**) password Guessing attack
+# Adaptive, Dynamic Mangling rules (**ADaMs**) password guessing attack
 
 Official repo for the *"Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries"* to be presented at USENIX21.
 
