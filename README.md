@@ -2,6 +2,8 @@
 
 Official repo for the *"Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries"* to be presented at USENIX21.
 
+(**Note:** The code reported in this repository is mainly aimed to reproduce the results in our paper and support security analysis in the academic context.  We are working on a complete re-implementation of the software that will be applicable in actual password recovery applications. Stay tuned.)
+
 # Run a ADaMs attack
 ...
 
