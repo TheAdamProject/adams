@@ -38,4 +38,4 @@ The binary takes as input different mandatory parameters:
 <p align="center">
   <img width="30%" height="30%" src="https://gwillem.gitlab.io/assets/img/hashcat.png">
 </p>
-Our software is built on top of (hashcat-legacy)[https://github.com/hashcat/hashcat-legacy].
+Our software is built on top of [hashcat-legacy](https://github.com/hashcat/hashcat-legacy).
