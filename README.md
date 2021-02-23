@@ -41,15 +41,12 @@ For instance:
 
 
 ### Pre-trained Models
-Pre-trained models in Keras format, along with rules files and default parameters, are available [here](https://drive.google.com/drive/folders/1b697kYxg1z3BAgn7R7fy9pX5lBHE6Et-?usp=sharing).
-
-At the moment, we have three models:
+Pre-trained models in Keras format, along with rules files and default parameters, are available [here](https://drive.google.com/drive/folders/1b697kYxg1z3BAgn7R7fy9pX5lBHE6Et-?usp=sharing). At the moment, we are sharing three models:
 * *PasswordPro_BIG* based on *InsidePro-PasswordsPro.rule*
 * *generated_BIG* based on *generated.rule*
 * *generated2_BIG* based on *generated2.rule*
 
 You can also download them by: 
-
 > make download\_models
 
 It creates a directory *AdamsPreTrainedKerasModels* and a directory for each pre-trained model inside it. These directories can be used with the **--config-dir** parameter.
