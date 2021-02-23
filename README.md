@@ -6,7 +6,7 @@ Official repo for the *"Reducing Bias in Modeling Real-world Password Strength v
 ⚠️ **Disclaimer:** This code is aimed at reproducing the results reported in our paper as well as support security analysis in the academic context.  We are working on a complete re-implementation of the software that will be applicable in actual password recovery applications. [Stay tuned 🎶](https://github.com/TheAdamProject/AdamTheFirstCracker/).
 
 # Run the ADaMs Attack
-**(It works only on plaintext passwords, no password hash)**
+
 
 All the materials to run the Adam Attack is contained in *AdamAttack* directory. 
 To be able to run the attack the following prerequisites must been satisfied:
@@ -24,7 +24,7 @@ This produces a directory *bin* containing a binary file *AdamAttack* that you c
 The binary accepts the following input parameters:
 * **-r** an hashcat rules-set e.g., *generated.rule*.
 * **-w** the dictionary used to create the training set. Referred as *W* in the paper.
-* **--hashes-file** the file containing the attacked set of password. Referred as * * in the paper.
+* **--hashes-file** the file containing the attacked set of password. Referred as *X* in the paper. **(⚠️ It must contain plaintext passwords, no password hashes)**
 * **--output-guessed-file** the file to store the password guessed by AdamAttack. Default it is the stdout. This is an optional parameter.
 * **-a** the attack mode. Accepted values are 0=standard, 9=adams. The default value is adams.
 * **--max-guesses-pow** the exponent of the power of 10 that defines the maximum number of guesses.
