@@ -23,9 +23,9 @@ This produces a directory *bin* containing a binary file *AdamAttack* that you c
 
 The binary accepts the following input parameters:
 * **-r** an hashcat rules-set e.g., *generated.rule*.
-* **-w** the dictionary used to create the training set. Referred as *W* in the paper.
+* **-w** the dictionary/worlist for the attack
 * **--hashes-file** the file containing the attacked set of password. Referred as *X* in the paper. **(⚠️ It must contain plaintext passwords, no password hashes)**
-* **--output-guessed-file** the file to store the password guessed by AdamAttack. Default it is the stdout. This is an optional parameter.
+* **--output-guessed-file** the file to store the password guessed by AdamAttack. Default it is the stdout. This is an optional parameter. 
 * **-a** the attack mode. Accepted values are 0=standard, 9=adams. The default value is adams.
 * **--max-guesses-pow** the exponent of the power of 10 that defines the maximum number of guesses.
 * **--config-dir** the path of the directory containing the trained model, the  rules file and the budget file. It works only with adam attack-mode.
@@ -33,7 +33,11 @@ The binary accepts the following input parameters:
 * **--model-path** the pathname of the trained-model. It works only with adam attack-mode.
 * **--budget** the attack budget. It works only with adam attack-mode.
 
-⚠️ To note: The *AdamAttack* writes in stdout (or in output-guessed-file if set) the password **guessed** during the attack.  
+For instance:
+> cd AdamAttack/ <br>
+> ./bin/AdamAttack -a 9 -w WORDLIST.txt --config-dir MODELs/PasswordPro_BIG/ --hashes RockYou.txt
+
+⚠️ To note: The *AdamAttack* writes in stdout (or in output-guessed-file if set) the password **guessed** during the attack. 
 
 
 ### Pre-trained Models
@@ -92,8 +96,7 @@ A template for such a configuration file is *NeuralNet/CONFs/BIG_bn2.gin*. This 
 
 ⚠️ **TO NOTE:** Here, the parameters *setup.train_home* and *setup.test_homes* must be set with the path of the training set folder and the validation set folder (even more than one) respectively. For instance:
 
-> setup.train_home = "./trainset/"
-> 
+> setup.train_home = "./trainset/" <br>
 > setup.test_homes = [ "./validation1/", "./validation2/"]
 
 
