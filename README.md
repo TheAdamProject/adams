@@ -40,7 +40,7 @@ For instance:
 > cd AdamAttack/ <br>
 > ./bin/AdamAttack -a 9 -w WORDLIST.txt --config-dir MODELs/PasswordPro_BIG/ --hashes RockYou.txt
 
-⚠️ To note: The *AdamAttack* writes in stdout (or in output-guessed-file if set) the password **guessed** during the attack. 
+⚠️ To note: The *AdamAttack* writes on stdout (or in output-guessed-file if set) only the password **guessed** during the attack. 
 
 
 ### Pre-trained Models
