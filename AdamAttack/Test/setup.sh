@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ./banner.sh
 PASSWORD_URL="https://kelvin.iac.rm.cnr.it/"
 NAME_ZIP="passwords.zip"
 PASSWORDPRO_BIG="PasswordPro_BIG"
