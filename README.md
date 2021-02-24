@@ -8,12 +8,15 @@ Official repo for the *"Reducing Bias in Modeling Real-world Password Strength v
 # Run the ADaMs Attack
 
 
-All the materials to run the Adam Attack is contained in *AdamAttack* directory. 
+All the materials to run the ADaMs Attack is contained in *AdamAttack* directory. 
 To be able to run the attack the following prerequisites must been satisfied:
 
-* Python
-* CUDA 
-* tensorflow2
+* gcc/g++
+* Python 3.x
+* TensorFlow **2.x**
+* CUDA (if TensorFlow-GPU)
+
+⚠️ We tested the code only on *ubuntu* >= 18.x. 
 
 To compile the binary, use the Makefile, e.g.:
 
