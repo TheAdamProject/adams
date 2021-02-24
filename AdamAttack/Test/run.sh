@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ./banner.sh
 DICT="Test/passwords/phpbb_ascii_5-16_sorted.txt"
 ACT="Test/passwords/rockyou_ascii_5_16_sorted.txt"
 MODEL="Test/MODELs/PasswordPro_BIG/"
