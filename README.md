@@ -49,6 +49,8 @@ Pre-trained models in Keras format, along with rules files and default parameter
 * *generated_BIG* based on *generated.rule*
 * *generated2_BIG* based on *generated2.rule*
 
+Smaller models will be released soon.
+
 You can also download them by: 
 > make download\_models
 
