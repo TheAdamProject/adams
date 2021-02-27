@@ -109,7 +109,7 @@ Once create a suitable configuration file, you can start the training using *tra
 
 > python train.py CONFs/my_BIG_bn2.gin
 
-The script saves checkpoints and logs for the training process in *NeuralNet/MODELs/CHECKPOINTS*. This can be visualized with tensorboard. At the end of the training, it will save a keras model in  *NeuralNet/MODELs/SAVED_MODELS*.
+The script saves checkpoints and logs for the training process in *NeuralNet/MODELs/CHECKPOINTS*. These can be visualized with tensorboard. At the end of the training, it will save a keras model in  *NeuralNet/MODELs/SAVED_MODELS*.
 
 # Cite the paper
 This is the official repository of the paper *"Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries"* to be presented at USENIX Security 2021.
