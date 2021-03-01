@@ -3,13 +3,24 @@ import numpy as np
 import myPickle, os, glob
 import math
 import h5py
-import hashPyCat
 import tensorflow_probability as tfp
 
 CMNAME = '../../charmap.pickle'
 buffer_size = 10000
 ENCODING = 'ascii'
 
+
+def readX_strict(path, encoding='iso-8859-1', MIN_LEN=0, MAX_LEN=0):
+    X = []
+    with open(path, encoding=encoding) as f:
+        X = [x.strip() for x in f]
+    return X
+
+def readRULE(path):
+    with open(path) as f:
+        raw = [x.strip() for x in f]
+        raw = [x for x in raw if x and x[0] != '#']
+    return raw
 
 def prepareXi(X, CM, MAX_LEN, CMm):
     f = lambda x: CM[x] if x in CM else CMm
@@ -36,7 +47,7 @@ def makeIterInput(home, batch_size, MAX_LEN=16, buffer_size=buffer_size, for_pre
     DICT_SIZE = len(CM)
     
     rpath = os.path.join(home, 'rules.txt') 
-    rules = hashPyCat.readRULE(rpath)
+    rules = readRULE(rpath)
     CLASS_NUM = len(rules)
     print("RULES_NUMBER: ", CLASS_NUM)
     
@@ -44,7 +55,7 @@ def makeIterInput(home, batch_size, MAX_LEN=16, buffer_size=buffer_size, for_pre
         # for each chunk
         for xpath, index_path, hits_path in zip( getAll(home, 'X.txt_*'), getAll(home, 'index_hits*'), getAll(home, 'hits*') ):
             # read passwords chunk
-            X = hashPyCat.readP_strict(xpath, encoding=ENCODING)
+            X = readX_strict(xpath, encoding=ENCODING)
             # parse plaintext password 
             Xi = prepareXi(X, CM, MAX_LEN, CMm)
             

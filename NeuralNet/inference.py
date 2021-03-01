@@ -34,5 +34,3 @@ def inference(model, X, batch_size, MAX_LEN=16, CM_path=CM_PATH):
         out = model(xi, training=False)[1].numpy()
 
         yield out
-
-
