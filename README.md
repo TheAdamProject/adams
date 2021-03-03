@@ -52,9 +52,6 @@ Pre-trained models in Keras format, along with rules files and default parameter
 
 Smaller models will be released soon.
 
-You can also download them by: 
-> make download\_models
-
 It creates a directory *AdamsPreTrainedKerasModels* and a directory for each pre-trained model inside it. These directories can be used with the **--config-dir** parameter.
 
 ### Run a test
