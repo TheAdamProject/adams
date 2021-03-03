@@ -44,10 +44,11 @@ For instance:
 
 
 ### Pre-trained Models
-Pre-trained models in Keras format, along with rules files and default parameters, are available [here](https://drive.google.com/drive/folders/1b697kYxg1z3BAgn7R7fy9pX5lBHE6Et-?usp=sharing). At the moment, we are sharing three models:
-* *PasswordPro_BIG* based on *InsidePro-PasswordsPro.rule*
-* *generated_BIG* based on *generated.rule*
-* *generated2_BIG* based on *generated2.rule*
+Pre-trained models in Keras format, along with rules files and default parameters, are available:
+
+* [*PasswordPro_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/PasswordPro_SMALL.zip) 41MB based on *InsidePro-PasswordsPro.rule*
+* [*generated_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated_SMALL.zip) 91MB based on *generated.rule*
+* [*generated2_BIG*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated2_BIG.zip) 826M based on *generated2.rule*
 
 Smaller models will be released soon.
 
