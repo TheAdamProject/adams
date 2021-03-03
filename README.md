@@ -68,8 +68,6 @@ At the end of the process, a file called *adams_vs_standard_test.png* should app
   <img width="30%" src="./AdamAttack/Test/adams_vs_standard_REFERENCE.png">
 </p>
 
-
-
 # Train your model (Adaptive Mangling Rules)
 
 In order to train your model, you have to create a training set and a validation set first.
