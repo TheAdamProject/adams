@@ -36,22 +36,22 @@ $(BUILDDIR)/utilities.o: ${SRCDIR}/utilities.cpp
 	$(CC) -g -c -o $@ $(LIBS) $(INCLUDE) $^ $(OPT)
 
 
-download_models:
-	# Create root directory
-	mkdir -p ${MODELS_DIR}
-	# Create directory for each model
-	mkdir -p ${MODELS_DIR}/${GENERATED_BIG}
-	mkdir -p ${MODELS_DIR}/${GENERATED2_BIG}
-	mkdir -p ${MODELS_DIR}/${PASSWORDPRO_BIG}
-	declare -A FILENAMES=( ["model.h5"]="model.h5" ["params.txt"]="params.txt" ["rules.txt"]="rules.txt") \
-	; for key in "$${!FILENAMES[@]}" ; do \
-		wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/${GENERATED_BIG}/$${FILENAMES[$${key}]}"  -O ${MODELS_DIR}/${GENERATED_BIG}/$${key} ;\
-	done 
-	declare -A FILENAMES=( ["model.h5"]="model.h5" ["params.txt"]="params.txt" ["rules.txt"]="rules.txt") \
-	; for key in "$${!FILENAMES[@]}" ; do \
-		wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/${GENERATED2_BIG}/$${FILENAMES[$${key}]}"  -O ${MODELS_DIR}/${GENERATED2_BIG}/$${key} ;\
-	done 
-	declare -A FILENAMES=( ["model.h5"]="model.h5" ["params.txt"]="params.txt" ["rules.txt"]="rules.txt") \
-	; for key in "$${!FILENAMES[@]}" ; do \
-		wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/${PASSWORDPRO_BIG}/$${FILENAMES[$${key}]}"  -O ${MODELS_DIR}/${PASSWORDPRO_BIG}/$${key} ;\
-	done 
+#download_models:
+#	# Create root directory
+#	mkdir -p ${MODELS_DIR}
+#	# Create directory for each model
+#	mkdir -p ${MODELS_DIR}/${GENERATED_BIG}
+#	mkdir -p ${MODELS_DIR}/${GENERATED2_BIG}
+#	mkdir -p ${MODELS_DIR}/${PASSWORDPRO_BIG}
+#	declare -A FILENAMES=( ["model.h5"]="model.h5" ["params.txt"]="params.txt" ["rules.txt"]="rules.txt") \
+#	; for key in "$${!FILENAMES[@]}" ; do \
+#		wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/${GENERATED_BIG}/$${FILENAMES[$${key}]}"  -O ${MODELS_DIR}/${GENERATED_BIG}/$${key} ;\
+#	done 
+#	declare -A FILENAMES=( ["model.h5"]="model.h5" ["params.txt"]="params.txt" ["rules.txt"]="rules.txt") \
+#	; for key in "$${!FILENAMES[@]}" ; do \
+#		wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/${GENERATED2_BIG}/$${FILENAMES[$${key}]}"  -O ${MODELS_DIR}/${GENERATED2_BIG}/$${key} ;\
+#	done 
+#	declare -A FILENAMES=( ["model.h5"]="model.h5" ["params.txt"]="params.txt" ["rules.txt"]="rules.txt") \
+#	; for key in "$${!FILENAMES[@]}" ; do \
+#		wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/${PASSWORDPRO_BIG}/$${FILENAMES[$${key}]}"  -O ${MODELS_DIR}/${PASSWORDPRO_BIG}/$${key} ;\
+#	done 
