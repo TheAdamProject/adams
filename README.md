@@ -46,11 +46,11 @@ For instance:
 ### Pre-trained Models
 Pre-trained models in Keras format, along with rules files and default parameters, are available:
 
-* [*PasswordPro_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/PasswordPro_SMALL.zip) 41MB based on *InsidePro-PasswordsPro.rule*
-* [*generated_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated_SMALL.zip) 91MB based on *generated.rule*
-* [*generated2_BIG*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated2_BIG.zip) 826M based on *generated2.rule*
+* [*PasswordPro_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/PasswordPro_SMALL.zip) 41MB based on *InsidePro-PasswordsPro.rule* (150.000.000 c/sec)
+* [*generated_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated_SMALL.zip) 91MB based on *generated.rule* (560.000.000 c/sec)
+* [*generated2_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated2_SMALL.zip) 204M based on *generated2.rule* (1.550.000.000 c/sec)
 
-Smaller models will be released soon.
+Smaller models will be released soon. "*c/sec*" stands for compatibility scores per second on a NVIDIA V100.
 
 Each pre-trained model is represented with a directory. These directories can be used with the **--config-dir** parameter.
 
