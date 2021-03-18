@@ -32,14 +32,11 @@ def estimate_alpha(estimate_alpha_batch):
     alpha = alpha / i
     return alpha
 
-def saveModel(gin_conf, f):
-    rule, wl, name = gin_conf.split('/')[-3:]
-    name = myOS.basenameNoExt(name, sep='~')
-
-    name = f'{rule}-{wl}-{name}.h5'
+def saveModel(conf_name, f):
+    name = f'{conf_name}.h5'
     output = os.path.join(SAVED_MODELS, name)
 
-    f.save(output, save_format='h5', include_optimizer=False)
+    f.save(output, save_format='h5', include_optimizer=True)
 
 ## Run ###################################################################################
 
@@ -155,7 +152,7 @@ if __name__ == '__main__':
     checkpoint = tf.train.Checkpoint(model=f)
     checkpoint.restore(T.ckpt_manager.latest_checkpoint)
     print ('Latest checkpoint restored!! Saving...')
-    saveModel(gin_conf, f)
+    saveModel(conf_name, f)
     
     
                 
