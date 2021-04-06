@@ -115,7 +115,7 @@ If you use this tool for your research activity, please cite our paper
 ```
 @inproceedings {272236,
 	title = {Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries},
-  author={Pasquini, Dario and Cianfriglia, Marco and Ateniese, Giuseppe and Bernaschi, Massimo},
+  	author={Pasquini, Dario and Cianfriglia, Marco and Ateniese, Giuseppe and Bernaschi, Massimo},
 	booktitle = {30th {USENIX} Security Symposium ({USENIX} Security 21)},
 	year = {2021},
 	url = {https://www.usenix.org/conference/usenixsecurity21/presentation/pasquini},
