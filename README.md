@@ -90,7 +90,7 @@ The binary takes as input different mandatory parameters:
 * **-o** output directory, where to write the training set files.
 
 For instance:
-> mpirun -np 5 -w WORDLIST.txt -l ATTACKED_SET.txt -r RULES.rule -o OUTPUTDIR
+> mpirun -np 5 ./bin/makeTrainingsetMPI -w WORDLIST.txt -l ATTACKED_SET.txt -r RULES.rule -o OUTPUTDIR
 
 ## Training the model
 After you have created one training set and at least one validation set (used as early-stopping criteria) with *makeTrainingsetMPI*, you have to craft a configuration file for the training process. 
