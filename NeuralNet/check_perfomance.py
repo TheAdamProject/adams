@@ -30,10 +30,20 @@ if __name__ == '__main__':
     
     n_rules = out.shape[-1]
     tot_cs = N * BS * n_rules
-    
-    
     tp = tot_cs / elapsed
-    print("%d c/s (Compatibility-scores per second)" % tp)
+
+
+    # waste of cpu fallows
+    _tp = str(int(tp))
+    tp = []
+    for i, c in enumerate(_tp):
+        if i and i % 3 == 0:
+            tp += ['.'] 
+        tp += [c]
+    tp = ''.join(tp)
+    #
+    
+    print("%s c/s (Compatibility-scores per second)" % tp)
     
 
 

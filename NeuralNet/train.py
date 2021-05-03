@@ -1,6 +1,6 @@
 EVAL_SUBDIR = 'eval'
-model_dir_home = './MODELS/'
-SAVED_MODELS = './MODELS/SAVED_MODELS'
+model_dir_home = '../HOME/MODELS/'
+SAVED_MODELS = '../HOME/MODELS/SAVED_MODELS'
 MAX_LEN = 16
 
 
@@ -12,7 +12,6 @@ import tqdm
 import sys, os, shutil
 import myPickle, myOS
 from trainer import Trainer
-from input_pipeline_raw import makeIterInput
 from model import make_train_predict
 
 gpus = tf.config.experimental.list_physical_devices('GPU') 
@@ -63,6 +62,14 @@ def setup(
         
     batch_size = hparams['batch_size']
     
+    if hparams.get('BPE', False):
+        print("Using byte pair encoding")
+        from input_pipeline_raw_BPE import makeIterInput
+    else:
+        from input_pipeline_raw import makeIterInput
+        
+        
+   
     # estimated alpha from train-set
     estimate_alpha_batch, _, _ =  makeIterInput(train_home, ESTIMATE_ALPHA_BS, MAX_LEN=MAX_LEN, buffer_size=1, for_prediction=False)
     alpha = estimate_alpha(estimate_alpha_batch)

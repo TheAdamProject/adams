@@ -27,7 +27,10 @@ def prepareXi(X, CM, MAX_LEN, CMm):
     Xi = np.zeros((len(X), MAX_LEN), np.uint8)    
     for i, x in enumerate(X):
         xi = list(map(f, x))
-        Xi[i, :len(xi)] = xi            
+        try:
+            Xi[i, :len(xi)] = xi       
+        except:
+            ...
     return Xi
 
 def read_index(path, n):
@@ -71,6 +74,9 @@ def makeIterInput(home, batch_size, MAX_LEN=16, buffer_size=buffer_size, for_pre
                     rhits = np.frombuffer(b, dtype=np.uint32)
                     y = np.zeros(CLASS_NUM, dtype=np.int32)
                     y[rhits] = 1
+                    
+                    if len(x) > MAX_LEN:
+                        continue
                                         
                     yield x, y
             

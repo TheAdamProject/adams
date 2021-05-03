@@ -1,0 +1,35 @@
+# You have to set these 2 attributes before training:
+setup.train_home = "PUT A TRAINING SET HERE"
+setup.test_homes = [ "PUT ONE OR MORE VALIDATION SETS HERE", ]
+
+setup.MIN_LEN = 3
+setup.MAX_LEN = 16
+setup.epochs = 50
+setup.log_freq =  10000
+setup.test_for_epoch = 1
+setup.BUFFER_SIZE = 500
+
+setup.test_batch_size = 1024
+setup.test_num_steps = 5000
+
+
+setup.hparams = {
+    'BPE' : False,
+    
+    'arch' : 2,
+    'batch_size' : 256,
+    'learning_rate' : 0.0001,
+    
+    'layer_dim' : 256,
+    'depth' : 10,
+    'block_type' : 1,
+    'bottleneck_fc' : 2,
+    'conv_kernel_size' : 3,
+    'batch_norm' : True,
+    'activation' : 'relu',
+    
+    'char_emb_size' : 256,
+    
+    'focal_gamma' : 2,
+    'focal_alpha' : 0,
+}

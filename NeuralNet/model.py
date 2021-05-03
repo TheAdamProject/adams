@@ -1,7 +1,6 @@
 import tensorflow as tf
 from tensorflow import keras as k
 import os
-import architecture
 import numpy as np
 from utils import predictionFromProbability
 import losses
@@ -13,6 +12,12 @@ PAD = 0
 def make_model(hparams, DICT_SIZE, CLASS_NUM, MAX_LEN):
 
     # get arch
+    if hparams.get('2D', False):
+        print("Using 2D conv")
+        import architecture2d as architecture
+    else:
+        import architecture
+        
     arch_id = hparams['arch']
     arch = architecture.archMap(arch_id)
 
