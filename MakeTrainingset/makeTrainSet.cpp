@@ -26,18 +26,20 @@
 #define INFO_FILENAME "info.txt"
 #define RULESOUT_FILENAME "rules.txt"
 #define XOUT_FILENAME "X.txt"
-#define LABELX_FILENAME "labelX.bin"
-#define LABELR_FILENAME "labelR.bin"
+#define LABELX_FILENAME "hits.bin"
+#define LABELR_FILENAME "index_hits.bin"
 #define META_FILENAME "meta.bin"
 
 #define LOG_FQ 100000
+
+#define RC_t uint32_t
 
 void makeTrainSet(int rank, const char *output_dir, rules_t *rules, wordlist_t *wordlist, target_t *target, uint64_t *matched_per_th){
     
     fprintf(stderr,"[INFO]: Thread %d starts (%lu)\n", rank, wordlist->size());
 
-    FILE *rules_out, *dict_out, *labelX_out, *labelR_out, *meta_out;
-    rules_out = dict_out = labelX_out = labelR_out = meta_out = NULL;
+    FILE *rules_out, *dict_out, *index_out, *hits_out, *meta_out;
+    rules_out = dict_out = index_out = meta_out = hits_out = NULL;
     
     uint64_t guesses, noop_guesses, matched, wc, n_targets, log, rc, cwl, crl;
     guesses = noop_guesses = matched = wc = n_targets = 0;
@@ -57,20 +59,23 @@ void makeTrainSet(int rank, const char *output_dir, rules_t *rules, wordlist_t *
     snprintf(out,BUF_SIZE,"%s/%s_%d",output_dir,XOUT_FILENAME, rank);
     dict_out = Fopen(out, "w");
 
-    //binsmake
-    
-    snprintf(out,BUF_SIZE,"%s/%s_%d",output_dir,LABELX_FILENAME, rank);
-    labelX_out = Fopen(out, "wb");
+    //bins
+    snprintf(out,BUF_SIZE,"%s/%s_%d",output_dir, LABELX_FILENAME, rank);
+    hits_out = Fopen(out, "wb");
     snprintf(out,BUF_SIZE,"%s/%s_%d",output_dir,LABELR_FILENAME, rank);
-    labelR_out = Fopen(out, "wb");
+    index_out = Fopen(out, "wb");
     snprintf(out,BUF_SIZE,"%s/%s_%d",output_dir,META_FILENAME, rank);
     meta_out = Fopen(out, "wb");
     // ----------------------------------------------------------------
 
+
     // run ----------------------------------------------------------------
+    RC_t matched_per_word;
     char *cw = NULL, *cr = NULL;
     it_wordlist_t it;
     for(it=wordlist->begin(); it != wordlist->end(); ++it){
+        
+        matched_per_word = 0;
 
         if(log == LOG_FQ){
             fprintf(stderr,"[LOG %d]: [%lu] %lf%%\n", rank, wc, (double) wc / (double) wordlist->size());
@@ -112,9 +117,9 @@ void makeTrainSet(int rank, const char *output_dir, rules_t *rules, wordlist_t *
                 if(target->find(out) != target->end()){
                     //matched
                     matched++;
-                    //print binary match
-                    fwrite(&wc, sizeof(uint64_t), 1, labelX_out);
-                    fwrite(&rc, sizeof(int), 1, labelR_out);
+                    matched_per_word++;
+                    //print match rule
+                    fwrite(&rc, sizeof(RC_t), 1, hits_out);
                 }
 
             } else {
@@ -122,6 +127,9 @@ void makeTrainSet(int rank, const char *output_dir, rules_t *rules, wordlist_t *
                 exit(1);
             }
         }
+        // write number of matched password rule rc
+        fwrite(&matched_per_word, sizeof(RC_t), 1, index_out);
+        
         wc++;
     } 
 
@@ -135,10 +143,11 @@ void makeTrainSet(int rank, const char *output_dir, rules_t *rules, wordlist_t *
     if(rank == 0){
         fclose(rules_out);
     }
-    fclose(dict_out);
-    fclose(labelX_out);
-    fclose(labelR_out);
     
+    fclose(dict_out);
+    fclose(hits_out);
+    fclose(index_out);
+    fclose(meta_out);    
     //matched_per_th[rank] = matched;
 }
 
