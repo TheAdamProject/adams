@@ -74,26 +74,27 @@ In order to train your model, you have to create a training set and a validation
 
 ## Creating a training set
 
-The directory *MakeTrainingset* contains the necessary code to produce the training sets. The script based on MPI, thus a suitable implementation of MPI should be installed in your system.  
+The directory *MakeTrainingset* contains the necessary code to produce the training sets.
 
 The code can be compile using the makefile into the directory e.g.,:
 
 > cd MakeTrainingset; make 
 
-This produces a directory *bin* containing a binary file *makeTrainingsetMPI* that you will run to produce your training set. 
+This produces a directory *bin* containing a binary file *makeTrainSet* that you will run to produce your training set. 
 
 The binary takes as input different mandatory parameters:
 
-* **-w** the dictionary used to create the training set. Referred as *W* in the paper.
-* **-l** the attacked set of passwords used to create the training set. Called $X_{A}$ in the paper.
-* **-r** an hashcat rules-set e.g., *generated.rule*. 
-* **-o** output directory, where to write the training set files.
+* the dictionary used to create the training set. Referred as *W* in the paper.
+* an hashcat rules-set e.g., *generated.rule*. 
+* the attacked set of passwords used to create the training set. Called $X_{A}$ in the paper.
+* output directory, where to write the training set files.
+* the number of threads e.g., 32
 
 For instance:
-> mpirun -np 5 ./bin/makeTrainingsetMPI -w WORDLIST.txt -l ATTACKED_SET.txt -r RULES.rule -o OUTPUTDIR
+> ./bin/makeTrainSet WORDLIST.txt RULES.rule ATTACKED_SET.txt OUTPUTDIR 32
 
 ## Training the model
-After you have created one training set and at least one validation set (used as early-stopping criteria) with *makeTrainingsetMPI*, you have to craft a configuration file for the training process. 
+After you have created one training set and at least one validation set (used as early-stopping criteria) with *makeTrainSet*, you have to craft a configuration file for the training process. 
 
 A template for such a configuration file is *NeuralNet/CONFs/BIG_bn2.gin*. This contains all the hyper parameters and information needed to train a new model. 
 
