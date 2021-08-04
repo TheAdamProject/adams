@@ -11,6 +11,6 @@ cd ..
 
 mkdir -p MODELs
 cd MODELs
-wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/PasswordPro_SMALL.zip"
+wget --no-check-certificate "https://kelvin.iac.rm.cnr.it/AdamsPreTrainedModels/PasswordPro_SMALL.zip"
 unzip PasswordPro_SMALL.zip
 rm PasswordPro_SMALL.zip

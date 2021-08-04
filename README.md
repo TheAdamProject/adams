@@ -1,7 +1,3 @@
-⚠️⚠️⚠️ **Important: We are going to release a new version of the code in a few days!** ⚠️⚠️⚠️
-<br>
-<br>
-
 # Adaptive, Dynamic Mangling rules: **ADaMs**
 
 Official repo for the *"[Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries](https://arxiv.org/abs/2010.12269)"* by [Dario Pasquini](https://pasquini-dario.github.io/me/), Marco Cianfriglia, [Giuseppe Ateniese](https://web.stevens.edu/facultyprofile/?id=2182) and [Massimo Bernaschi](https://www.iac.rm.cnr.it/~massimo/Massimo_Bernaschi_home_page/Welcome.html) to be presented at USENIX Security 2021
@@ -18,12 +14,24 @@ To be able to run the attack the following prerequisites must been satisfied:
 * Python 3.x
 * TensorFlow **2.x**
 * CUDA (if TensorFlow-GPU)
+* [CppFlow](https://github.com/serizba/cppflow)
 
 We tested the code only on *ubuntu* >= 18.x. 
 
-To compile the binary, use the Makefile, e.g.:
+To compile the binary:
+1. Download  [Tensorflow C API](https://www.tensorflow.org/install/lang_c) and decompress it.
+2. Clone CppFlow: 
 
-> cd AdamAttack; make
+  > git clone git@github.com:serizba/cppflow.git
+3. Modify the *AdamAttack/Makefile* and set the two variables:
+  * TENSOFLOW_HOME = {path to Tensorflow C API}
+  * CPPFLOW_HOME = {path to CppFlow}
+4. Add the path to the TensorFlow's libraries to: *LD_LIBRARY_PATH*
+
+   > export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:{path to Tensorflow C API}
+5. Compile:
+
+   > cd AdamAttack; make
 
 This produces a directory *bin* containing a binary file *AdamAttack* that you can run to launch the attack.
 
@@ -31,11 +39,9 @@ The binary accepts the following input parameters:
 * **-r** an hashcat rules-set e.g., *generated.rule*.
 * **-w** the dictionary/worlist for the attack
 * **--hashes-file** the file containing the attacked set of password. Referred as *X* in the paper. **(⚠️ It must contain plaintext passwords, no password hashes)**
-* **--output-guessed-file** the file to store the password guessed by AdamAttack. Default it is the stdout. This is an optional parameter. 
 * **-a** the attack mode. Accepted values are 0=standard, 9=adams. The default value is adams.
 * **--max-guesses-pow** the exponent of the power of 10 that defines the maximum number of guesses.
 * **--config-dir** the path of the directory containing the trained model, the  rules file and the budget file. It works only with adam attack-mode.
-* **--daemon-port** the binding port of the python daemon that does the inference. It works only with adam attack-mode.
 * **--model-path** the pathname of the trained-model. It works only with adam attack-mode.
 * **--budget** the attack budget. It works only with adam attack-mode.
 
@@ -43,23 +49,22 @@ For instance:
 > cd AdamAttack/ <br>
 > ./bin/AdamAttack -a 9 -w WORDLIST.txt --config-dir MODELs/PasswordPro_BIG/ --hashes RockYou.txt
 
-⚠️ To note: The *AdamAttack* writes on stdout (or in output-guessed-file if set) only the password **guessed** during the attack. 
+⚠️ To note: The *AdamAttack* writes on stdout only the password **guessed** during the attack. 
 
 
 ### Pre-trained Models
 Pre-trained models in Keras format, along with rules files and default parameters, are available:
 
-* [*PasswordPro_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/PasswordPro_SMALL.zip) 41MB based on *InsidePro-PasswordsPro.rule* (150.000.000 c/sec)
-* [*generated_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated_SMALL.zip) 91MB based on *generated.rule* (560.000.000 c/sec)
-* [*generated2_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedKerasModels/generated2_SMALL.zip) 204M based on *generated2.rule* (1.550.000.000 c/sec)
+* [*PasswordPro_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedModels/PasswordPro_SMALL.zip) 44MB based on *InsidePro-PasswordsPro.rule* (150.000.000 c/sec)
+* [*generated_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedModels/generated_SMALL.zip) 130MB based on *generated.rule* (560.000.000 c/sec)
 
-Smaller models will be released soon. "*c/sec*" stands for compatibility scores per second on a NVIDIA V100.
+"*c/sec*" stands for compatibility scores per second on a NVIDIA V100.
 
 Each pre-trained model is represented with a directory. These directories can be used with the **--config-dir** parameter.
 
 ### Run a test
 
-Inside the directory *./AdamAttack/Test* you can run a scripted test and check if it is everything sound. Here, some instructions:
+Inside the directory *./AdamAttack/Test* you can run a scripted test and check if it is everything working. Here, some instructions:
 
 0. (After the code for the attack has been compiled)
 1. cd into */AdamAttack/Test*

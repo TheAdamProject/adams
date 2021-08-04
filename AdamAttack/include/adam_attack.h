@@ -18,7 +18,6 @@
 #include "tsearch.h"
 #include "rp.h"
 #include "engine.h"
-#include "set.h"
 
 #include "adaptive_model.h"
 #include "hashcat_utils.h"
@@ -28,7 +27,7 @@
 #define SLEEP_T 5
 #define MAX_CONNECT_RETRY 12
 
-
+#define LOG_FQ 10000
 #define BATCH_SIZE 4096
 #define MAX_BUFFER 256
 #define WORD_BATCH_DELIMITER '\t'

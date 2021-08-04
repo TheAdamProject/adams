@@ -7,11 +7,10 @@ def read(path):
     with open(path) as f:
         for l in f:
             l = l.strip()
-            g = re.search("\[LOG\] #Guesses: (.+)\t Matched: (.+)", l)
+            g = re.match("\[LOG\]: \(#guesses: (\d+) \|~10\^\d\|\)\t\(recovered: ([.\d]+)\%\)", l)
             if g:
                 L.append((float(g.groups()[0]), float(g.groups()[1])))
     return np.array(L)
-                
 
 if __name__ == '__main__':
     try:

@@ -6,7 +6,6 @@
 // ----------------------------------------------------------------------
 
 #include "adam_attack.h"
-#define LOG_FQ 50000
 
 
 
@@ -303,7 +302,6 @@ RERUN_MAIN_ATTACK:
            }
         }
     }
-    
  
     // handle consumer thread
 #ifdef SEMANTIC_RULES
@@ -339,7 +337,6 @@ RERUN_MAIN_ATTACK:
 exit:
     
     fprintf(stderr,"[LOG] number of guesses: %lu number of guessed: %lu\n", guesses, matched);
-    
     
     return 0;
 }

@@ -30,19 +30,17 @@ std::vector<float> adaptive_inference_batch(model_context* ctx, char **batch, ui
     //preprocess input 
     encode_batch(ctx->char_map, batch_size, batch, ctx->batch_encoded.data(), ctx->max_len);
     
-    /*
-    for(int i=0; i<batch_size * ctx->max_len; i++){
-        printf("%d ", ctx->batch_encoded.data()[i]);
-    }
-    printf("\n");
-    */
-    
     std::vector<int64_t> shape = {batch_size, ctx->max_len};
     auto input = cppflow::tensor(ctx->batch_encoded, shape);
     //inference
     // todo use pre-allocated out buffer
     auto output = (*(ctx->model))(input);
+    
     std::vector<float> values = output.get_data<float>();
+    
+    //int n_rule =  (int) values.size() / batch_size;
+    //fprintf(stderr, "N_RULE: %d\n", n_rule);
+    
     return values;
 }
 
