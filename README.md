@@ -118,10 +118,12 @@ This is the official repository of the paper *"Reducing Bias in Modeling Real-wo
 If you use this tool for your research activity, please cite our paper
 ```
 @inproceedings {272236,
+	author = {Dario Pasquini and Marco Cianfriglia and Giuseppe Ateniese and Massimo Bernaschi},
 	title = {Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries},
-  	author={Pasquini, Dario and Cianfriglia, Marco and Ateniese, Giuseppe and Bernaschi, Massimo},
 	booktitle = {30th {USENIX} Security Symposium ({USENIX} Security 21)},
 	year = {2021},
+	isbn = {978-1-939133-24-3},
+	pages = {821--838},
 	url = {https://www.usenix.org/conference/usenixsecurity21/presentation/pasquini},
 	publisher = {{USENIX} Association},
 	month = aug,
