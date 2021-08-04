@@ -378,3 +378,87 @@ void load_words (FILE *fp, words_t *words, engine_parameter_t *engine_parameter)
   }
 }
 
+
+// Dario's ....>>....>.....>>...>>..>>..>>>.>>.>....>.>>
+
+/*
+Init rules/words structures (code from hashcat legacy)
+*/
+db_t* initBuffers_hashcat(){
+    engine_parameter_t *engine_parameter = init_new_engine_parameter ();
+    engine_parameter->hash_type      = HASH_TYPE_PLAIN;
+    engine_parameter->salt_type      = SALT_TYPE_NONE;
+    engine_parameter->plain_size_max = PLAIN_SIZE_PLAIN;
+    rules_t *rules = init_new_rules ();
+    words_t *words = init_new_words ();
+    words->cache_avail = CACHE_SIZE * 1024 * 1024;
+    words->cache_buf = (char*)mymalloc (words->cache_avail);
+    db_t *db = init_new_db ();
+    db->rules = rules;
+    db->words = words;
+    return db;
+}
+
+/*
+Load and parse hashcat rules from file (code from hashcat legacy)
+*/
+void loadRulesFromFile(const char* file_rules, rules_t *rules){
+    char rule_buf[BUFSIZ];
+    int rule_len = 0;
+    FILE *fp = NULL;
+    int  rc = 0;
+
+
+     if (file_rules != NULL){
+          if ((fp = fopen (file_rules, "rb")) != NULL){
+          while ((rule_len = fgetl (fp, rule_buf)) != -1){
+              if (rule_len == 0){
+              continue;
+          }
+          if (rule_buf[0] == '#'){
+              continue;
+          }
+          rc = add_rule(rule_buf, rule_len, rules);
+          if (rc == 0){
+            /* all ok */
+          } else if (rc == -1){
+              fprintf(stderr,"[WARN]: Skipping rule: %s (syntax error)", rule_buf);
+          } else if (rc == -3){
+              fprintf(stderr,"[WARN]: Skipping rule: %s (duplicate rule)", rule_buf);
+          } else if (rc == -4){
+              fprintf(stderr,"[WARN]: Skipping rule: %s (duplicate result)", rule_buf);
+          }
+        }
+        fclose (fp);
+        } else {
+            fprintf(stderr,"[ERROR]: %s: %s", file_rules, strerror (errno));
+            exit(EXIT_FAILURE);
+        }
+     } else {
+        fprintf(stderr,"[ERROR]: rules file is missing\n");
+        exit(EXIT_FAILURE);
+     }
+}
+
+
+void loadWordlist(const char *file_wordlist, words_t *words){
+    FILE *fp = NULL;
+    
+    engine_parameter_t *engine_parameter = init_new_engine_parameter();
+    engine_parameter->hash_type      = HASH_TYPE_PLAIN;
+    engine_parameter->salt_type      = SALT_TYPE_NONE;
+    engine_parameter->plain_size_max = PLAIN_SIZE_PLAIN;
+    
+    if (file_wordlist != NULL){
+        if ((fp = fopen (file_wordlist, "rb")) != NULL){
+            /*    char rule_buf[RP_RULE_BUFSIZ]; */
+            load_words (fp, words, engine_parameter);
+            fclose (fp);
+      } else {
+          fprintf(stderr,"[ERROR]: %s: %s", file_wordlist, strerror (errno));
+          exit (EXIT_FAILURE);}
+      } else {
+          fprintf(stderr,"[ERROR]: wordlist file is missing\n");
+           exit(EXIT_FAILURE);
+      }
+}

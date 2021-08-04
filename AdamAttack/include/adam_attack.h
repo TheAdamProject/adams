@@ -7,6 +7,8 @@
 #include<list>
 #include<string>
 #include<forward_list>
+#include <unistd.h>
+
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -17,7 +19,10 @@
 #include "rp.h"
 #include "engine.h"
 #include "set.h"
-#include <unistd.h>
+
+#include "adaptive_model.h"
+#include "hashcat_utils.h"
+#include "wordlist.h"
 
 #define MAX_LEN 16
 #define SLEEP_T 5
@@ -25,11 +30,9 @@
 
 
 #define BATCH_SIZE 4096
-#define MAX_BUFFER 2048
+#define MAX_BUFFER 256
 #define WORD_BATCH_DELIMITER '\t'
 #define WORD_BATCH_DELIMITER_STRING "\t"
-#define DEFAULT_SERVER_PORT 56780
-#define DEFAULT_SERVER_HOST "127.0.0.1"
 #define DEBUG 0
 
 
@@ -41,7 +44,6 @@
 
 #define TIMER_ELAPSED ((temp_2.tv_sec-temp_1.tv_sec)*1.e6+(temp_2.tv_usec-temp_1 .tv_usec))
 
-
 #define MT_INCR         1
 #define MT_NORM         2
 #define MT_NORM_MIN_MAX 3
@@ -51,9 +53,15 @@
 #define MAX_TH 0.9
 
 
-//int runAttackAdaptiveRule(rules_t * rules, words_t *words, char *file_wordlist, char *file_rules, char *file_labelset, bool dynamic, float threshold, int daemon_port, uint64_t max_guess);
+int runAttackAdam(
+    model_context *ctx,
+    rules_t * rules,
+    wordlist_t *wordlist,
+    target_t *target,
+    float budget,
+    bool dynamic,
+    bool semantic,
+    int output_type,
+    uint64_t max_guess);
 
-int runAttackAdam(rules_t * rules, words_t *words, char *file_hashes, float budget, int daemon_port, FILE *orf, uint64_t max_guess);
-
-int runAttackStandard(rules_t * rules, words_t *words, char *file_hashes, FILE *orf, uint64_t max_guess);
 #endif

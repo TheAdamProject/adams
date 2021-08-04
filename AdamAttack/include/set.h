@@ -27,10 +27,6 @@ int searchElem(MyListPtr head, char *term);
 MyListPtr createElem(char *term);
 void freeTree(MyListPtr head);
 int mycompare(char *t1, char *t2);
-void *Malloc(size_t sz, const char *name);
-void *Calloc(size_t nmemb, size_t size, const char *name);
-FILE *Fopen(const char *path, const char *mode);
-void Mkdir(char * path, mode_t mode);
 
 MyListPtr* loadLabelSets(const char** paths, int numOfLabelSet);
 MyListPtr loadLabelSetGetN(const char* paths, uint64_t *N);

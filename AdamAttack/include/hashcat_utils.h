@@ -5,8 +5,6 @@
  * License.....: MIT
  */
 
-#define LOG_FQ 100000
-
 
 #ifdef FREEBSD
 #include <sys/types.h>
@@ -113,4 +111,8 @@ engine_parameter_t *init_new_engine_parameter (void);
 void add_word (char *word_pos, uint32_t word_len, words_t *words, engine_parameter_t *engine_parameter);
 int add_rule (char *rule_buf, uint32_t rule_len, rules_t *rules);
 void load_words (FILE *fp, words_t *words, engine_parameter_t *engine_parameter);
+
+db_t* initBuffers_hashcat();
+void loadRulesFromFile(const char* file_rules, rules_t *rules);
+void loadWordlist(const char *file_wordlist, words_t *words);
 #endif
