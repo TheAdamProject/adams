@@ -13,6 +13,7 @@ To be able to run the attack the following prerequisites must been satisfied:
 * gcc/g++
 * Python 3.x
 * TensorFlow **2.x**
+* Matplotlib
 * CUDA (if TensorFlow-GPU)
 * [CppFlow](https://github.com/serizba/cppflow)
 
@@ -22,7 +23,7 @@ To compile the binary:
 1. Download  [Tensorflow C API](https://www.tensorflow.org/install/lang_c) and decompress it.
 2. Clone CppFlow: 
 
-  > git clone git@github.com:serizba/cppflow.git
+  > git clone https://github.com/serizba/cppflow.git
 3. Modify the *AdamAttack/Makefile* and set the two variables:
   * TENSOFLOW_HOME = {path to Tensorflow C API}
   * CPPFLOW_HOME = {path to CppFlow}
@@ -68,8 +69,9 @@ Inside the directory *./AdamAttack/Test* you can run a scripted test and check i
 
 0. (After the code for the attack has been compiled)
 1. cd into */AdamAttack/Test*
-2. download the model, dictionary (phpBB) and attacked set (RockYou) by running: *./setup.sh*. 
-3. Then, lunch the attack by running: *./run.sh*. It will take some time.
+2. add execution permission to the scripts: *chmod u+x setup.sh run.sh*
+3. download the model, dictionary (phpBB) and attacked set (RockYou) by running: *./setup.sh*. 
+4. Then, lunch the attack by running: *./run.sh*. It will take some time.
 
 At the end of the process, a file called *adams_vs_standard_test.png* should appear in *./AdamAttack/Test*. The plot reported in the image should be something like this:
 <p align="center">
