@@ -1,6 +1,6 @@
 # SET THESE:
-CPPFLOW_HOME = /home/pasquini/NEW/ADAM/semantic_mangling_rules/cppflow/
-TENSOFLOW_HOME = /home/pasquini/NEW/ADAM/semantic_mangling_rules/TENSORFLOW_C_LIB/
+CPPFLOW_HOME = #PUT PATH TO CppFlow HERE!
+TENSOFLOW_HOME = #PUT PATH TO TesorFlow APIs HERE!
 #########################################################################
 
 CC = g++
