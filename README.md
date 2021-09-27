@@ -1,14 +1,14 @@
 # Adaptive, Dynamic Mangling rules: **ADaMs**
 
-Official repo for the *"[Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries](https://arxiv.org/abs/2010.12269)"* by [Dario Pasquini](https://pasquini-dario.github.io/me/), Marco Cianfriglia, [Giuseppe Ateniese](https://web.stevens.edu/facultyprofile/?id=2182) and [Massimo Bernaschi](https://www.iac.rm.cnr.it/~massimo/Massimo_Bernaschi_home_page/Welcome.html) to be presented at USENIX Security 2021
+Official repo for the *"[Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries](https://arxiv.org/abs/2010.12269)"* by [Dario Pasquini](https://pasquini-dario.github.io/me/), Marco Cianfriglia, [Giuseppe Ateniese](https://web.stevens.edu/facultyprofile/?id=2182) and [Massimo Bernaschi](https://www.iac.rm.cnr.it/~massimo/Massimo_Bernaschi_home_page/Welcome.html) presented at USENIX Security 2021
 
 **Disclaimer:** This code is aimed at reproducing the results reported in our paper as well as support security analysis in the academic context.  We are working on a complete re-implementation of the software that will be applicable in actual password recovery applications. [Stay tuned 🎶](https://github.com/TheAdamProject/AdamTheFirstCracker/).
 
 # Run the ADaMs Attack
 
 
-All the materials to run the ADaMs Attack is contained in *AdamAttack* directory. 
-To be able to run the attack the following prerequisites must been satisfied:
+All the code needed to run the ADaMs Attack is contained in *AdamAttack* directory. 
+To be able to run the attack, the following prerequisites must been satisfied:
 
 * gcc/g++
 * Python 3.x
@@ -61,7 +61,7 @@ Pre-trained models in Keras format, along with rules files and default parameter
 
 "*c/sec*" stands for compatibility scores per second on a NVIDIA V100.
 
-Each pre-trained model is represented with a directory. These directories can be used with the **--config-dir** parameter.
+Each pre-trained model comes with its rule-set and the best hyper-parameters we found in our analysis. You can load the pre-trained model/rules-set/hyper-parameters by using the flag: **--config-dir** followed by the downloaded directory.
 
 ### Run a test
 
@@ -108,20 +108,20 @@ After you have created one training set and at least one validation set (used as
 
 A template for such a configuration file is *NeuralNet/CONFs/BIG_bn2.gin*. This contains all the hyper parameters and information needed to train a new model. 
 
-⚠️ **TO NOTE:** Here, the parameters *setup.train_home* and *setup.test_homes* must be set with the path of the training set folder and the validation set folder (even more than one) respectively. For instance:
+⚠️ **TO NOTE:** Here, the parameters *setup.train_home* and *setup.test_homes* must be set with the path of the training set folder and the validation set folder (you can use more than one validation set) respectively. For instance:
 
 > setup.train_home = "./trainset/" <br>
 > setup.test_homes = [ "./validation1/", "./validation2/"]
 
 
-Once create a suitable configuration file, you can start the training using *train.py* in *./NeuralNet/*. This takes as input the path to the configuration file e.g.,:
+Once created a suitable configuration file, you can start the training using *train.py* in *./NeuralNet/*. This takes as input the path to the configuration file e.g.,:
 
 > python train.py CONFs/my_BIG_bn2.gin
 
-The script saves checkpoints and logs for the training process in *NeuralNet/MODELs/CHECKPOINTS*. These can be visualized with tensorboard. At the end of the training, it will save a keras model in  *NeuralNet/MODELs/SAVED_MODELS*.
+The script saves checkpoints and logs for the training process in *NeuralNet/MODELs/CHECKPOINTS*. These can be visualized using tensorboard. At the end of the training, the script saves the keras model in  *NeuralNet/MODELs/SAVED_MODELS*.
 
 # Cite the paper
-This is the official repository of the paper *"Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries"* to be presented at USENIX Security 2021.
+This is the official repository of the paper *"Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries"* presented at USENIX Security 2021.
 If you use this tool for your research activity, please cite our paper
 ```
 @inproceedings {272236,
@@ -138,7 +138,7 @@ If you use this tool for your research activity, please cite our paper
 ```
 
 # "Standing on the shoulders of giants"
-Our software is built on top of **hashcat-legacy**.
+Our software is built on top of [**hashcat-legacy**](https://github.com/hashcat/hashcat-legacy/).
 <p align="center">
   <img width="30%" height="30%" src="https://gwillem.gitlab.io/assets/img/hashcat.png">
 </p>
