@@ -32,10 +32,9 @@ def estimate_alpha(estimate_alpha_batch):
     return alpha
 
 def saveModel(conf_name, f):
-    name = f'{conf_name}.h5'
+    name = f'{conf_name}'
     output = os.path.join(SAVED_MODELS, name)
-
-    f.save(output, save_format='h5', include_optimizer=True)
+    f.save(output, include_optimizer=False)
 
 ## Run ###################################################################################
 
