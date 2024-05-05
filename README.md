@@ -2,8 +2,7 @@
 
 Official repo for the *"[Reducing Bias in Modeling Real-world Password Strength via Deep Learning and Dynamic Dictionaries](https://arxiv.org/abs/2010.12269)"* by [Dario Pasquini](https://pasquini-dario.github.io/me/), Marco Cianfriglia, [Giuseppe Ateniese](https://web.stevens.edu/facultyprofile/?id=2182) and [Massimo Bernaschi](https://www.iac.rm.cnr.it/~massimo/Massimo_Bernaschi_home_page/Welcome.html) presented at USENIX Security 2021
 
-**Disclaimer:** This code is aimed at reproducing the results reported in our paper as well as support security analysis in the academic context.  We are working on a complete re-implementation of the software that will be applicable in actual password recovery applications. [Stay tuned 🎶](https://github.com/TheAdamProject/AdamTheFirstCracker/).
-
+**Disclaimer:** This code is aimed at reproducing the results reported in our paper as well as support security analysis in the academic context.
 # Run the ADaMs Attack
 
 
@@ -140,5 +139,5 @@ If you use this tool for your research activity, please cite our paper
 # "Standing on the shoulders of giants"
 Our software is built on top of [**hashcat-legacy**](https://github.com/hashcat/hashcat-legacy/).
 <p align="center">
-  <img width="30%" height="30%" src="https://gwillem.gitlab.io/assets/img/hashcat.png">
+  <img src="https://hashcat.net/s/i/hashcat-icon.png">
 </p>
