@@ -55,8 +55,8 @@ For instance:
 ### Pre-trained Models
 Pre-trained models in Keras format, along with rules files and default parameters, are available:
 
-* [*PasswordPro_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedModels/PasswordPro_SMALL.zip) 44MB based on *InsidePro-PasswordsPro.rule* (150.000.000 c/sec)
-* [*generated_SMALL*](https://kelvin.iac.rm.cnr.it/AdamsPreTrainedModels/generated_SMALL.zip) 130MB based on *generated.rule* (560.000.000 c/sec)
+* [*PasswordPro_SMALL*](https://drive.google.com/file/d/1om38E56d2WCBAzsP-Je3DxDyMG96auVP/view?usp=share_link) 44MB based on *InsidePro-PasswordsPro.rule* (150.000.000 c/sec)
+* [*generated_SMALL*](https://drive.google.com/file/d/14VFSsb-9_ZAyk4X9i8oBzWqycsQEOqk6/view?usp=share_link) 130MB based on *generated.rule* (560.000.000 c/sec)
 
 "*c/sec*" stands for compatibility scores per second on a NVIDIA V100.
 
@@ -68,9 +68,10 @@ Inside the directory *./AdamAttack/Test* you can run a scripted test and check i
 
 0. (After the code for the attack has been compiled)
 1. cd into */AdamAttack/Test*
-2. add execution permission to the scripts: *chmod u+x setup.sh run.sh*
-3. download the model, dictionary (phpBB) and attacked set (RockYou) by running: *./setup.sh*. 
-4. Then, lunch the attack by running: *./run.sh*. It will take some time.
+2. ```mkdir MODELs; cd Models``` Then download [*PasswordPro_SMALL.zip*](https://drive.google.com/file/d/1om38E56d2WCBAzsP-Je3DxDyMG96auVP/view?usp=share_link), and unzip it.
+3. ```cd ..``` back to */AdamAttack/Test/*. Download the file [*passwords.zip*](https://drive.google.com/file/d/1om38E56d2WCBAzsP-Je3DxDyMG96auVP/view?usp=share_link), and unzip it.
+4. add execution permission to the scripts: ```chmod u+x run.sh```
+6. Then, lunch the attack by running: *./run.sh*. It will take some time.
 
 At the end of the process, a file called *adams_vs_standard_test.png* should appear in *./AdamAttack/Test*. The plot reported in the image should be something like this:
 <p align="center">
